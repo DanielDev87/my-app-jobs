@@ -1,10 +1,13 @@
 import React, {useEffect} from 'react'
 import {StyleSheet, View, Text, Image} from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-const SplashScreen = ({navigation}) => {
+const SplashScreen = () => {
+    const navigation = useNavigation()
+
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigation.replace('Home')
+            navigation.replace('MainTabs')
         }, 3000)
         return () => clearTimeout(timer)
     }, [navigation])
