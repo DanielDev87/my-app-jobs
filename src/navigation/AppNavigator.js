@@ -1,7 +1,7 @@
 import React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { Ionicons } from '@expo/vector-icons'
 
 import HomeScreen from '../screens/HomeScreen'
 import SplashScreen from '../screens/SplashScreen'
@@ -12,7 +12,21 @@ const Stack = createStackNavigator();
 
 const TabNavigator = () => {
     return (
-        <Tab.Navigator initialRouteName='Home'>
+        <Tab.Navigator initialRouteName='Home' screenOptions={({route}) => ({
+            tabBarIcon: ({color, size})=>{
+                let iconName
+                if (route.name ==='Home') {
+                    iconName= 'home-outline'
+                    
+                }else if (route.name === 'User') {
+                    iconName= 'person-outline'
+                }
+                return <Ionicons name={iconName} size={size} color={color}/>
+            },
+            tabBarActiveTintColor: '#0077B6',
+            tabBarInactiveTintColor: 'gray',
+            tabBarStyle:{backgroundColor: '#F8FAFC'}
+        })}>
             <Tab.Screen name="Home" component={HomeScreen} options={{}}/>
             <Tab.Screen name="User" component={UserScreen} options={{}}/>
         </Tab.Navigator>
