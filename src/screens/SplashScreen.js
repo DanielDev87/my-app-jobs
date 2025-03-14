@@ -1,6 +1,9 @@
 import React, {useEffect} from 'react'
 import {StyleSheet, View, Text, Image} from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import colors from '../constants/colors'
+import { LinearGradient } from 'expo-linear-gradient'
+
 
 const SplashScreen = () => {
     const navigation = useNavigation()
@@ -12,17 +15,18 @@ const SplashScreen = () => {
         return () => clearTimeout(timer)
     }, [navigation])
   return (
-    <View style={styles.container}>
-      <Text>Loading...</Text>
+    
+    <LinearGradient colors={colors.gradientePrimario} style={styles.container}>
+      <Text style={styles.text}>Loading...</Text>
       <Image source={require('../../assets/avatardanidev.png')} style={styles.logo}/>
-    </View>
+    </LinearGradient>
+   
   )
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#FFF0ED',  
+      flex: 1,       
       justifyContent: 'center',    
       alignItems: 'center',        
     },
@@ -30,6 +34,12 @@ const styles = StyleSheet.create({
       width: 200,      
       height: 200,
       resizeMode: 'contain',  
+    },
+    text: {
+      color: colors.luminous, 
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 20,
     },
     loader: {
       marginTop: 20,   
