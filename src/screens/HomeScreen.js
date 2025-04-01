@@ -2,11 +2,14 @@ import React from 'react'
 import {StyleSheet, Text} from 'react-native'
 import colors from '../constants/colors'
 import { LinearGradient } from 'expo-linear-gradient'
+import { useAuth } from '../context/AuthContext'
+
 
 const HomeScreen = () => {
+  const { user } = useAuth()
   return (
     <LinearGradient colors={colors.gradienteSecundario} style={styles.container}>
-      <Text style= {styles.text}>Home</Text>
+      <Text style= {styles.text}>Hola  {user?.displayName || 'Usuario'}</Text>
     </LinearGradient>
   )
 }
