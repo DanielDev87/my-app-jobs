@@ -8,6 +8,7 @@ import SplashScreen from '../screens/SplashScreen'
 import UserScreen from '../screens/UserScreen'
 import LoginScreen from '../screens/auth/LoginScreen'
 import RegisterScreen from '../screens/auth/RegisterScreen'
+import SettingsScreen from '../screens/SettingsScreen'
 
 const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator();
@@ -41,6 +42,7 @@ const AppNavigator = () => {
             <Stack.Screen name="Splash" component={SplashScreen} options={{headerShown: false}}/>
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
             <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
+            <Stack.Screen name="Settings" component={SettingsScreen} options={{headerShown: false}}/>
             <Stack.Screen name="MainTabs" component={TabNavigator} options={{ headerShown: false }} />
         </Stack.Navigator>
     )

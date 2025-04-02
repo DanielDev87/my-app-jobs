@@ -1,12 +1,33 @@
 import React from 'react'
-import {StyleSheet, Text} from 'react-native'
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native'
 import colors from '../constants/colors'
 import { LinearGradient } from 'expo-linear-gradient'
+import { useAuth } from '../context/AuthContext'
+import { signOut } from 'firebase/auth'
 
-const UserScreen = () => {
+
+const UserScreen = ({navigation}) => {
+  const { user } = useAuth()
+
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => navigation.replace('Login'))
+      .catch((error) => Alert.alert('Error', 'No se pudo cerrar sesión.'));
+  }
+
   return (
     <LinearGradient colors={colors.gradienteAccion} style={styles.container}>
-          <Text style= {styles.text}>User Screen 🤓</Text>
+      <View style={styles.header}>
+        <Text style={styles.title}>{user?.displayName|| 'Usuario'}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
+            <Text style={styles.editButton}>Ajustes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+            <Text style={styles.logoutText}>Cerrar sesión</Text>
+          </TouchableOpacity>
+      
+
+      </View>          
     </LinearGradient>
     
   )
